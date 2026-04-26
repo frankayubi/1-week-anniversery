@@ -11,10 +11,9 @@
         <canvas></canvas>
 
         <div id="imgTxt">
-            <img id="img" src="pic/socute.jpg"> 
-            
+            <img id="img" src="pic/your_photo.png"> 
             <video id="clip" playsinline>
-                <source src="pic/speed.mp4" type="video/mp4">
+                <source src="pic/your_video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -47,32 +46,33 @@
             var t = 0;
             var playCount = 0;
 
-            // Compatibility for other scripts
-            var imageArray = ["pic/socute.jpg"]; 
+            // Compatibility for existing scripts
+            var imageArray = ["pic/your_photo.png"]; 
             var txtArray = ["You are soooo cute !!!!"];
             var imageIndex = 0;
             var len = 1;
 
             var video = document.getElementById("clip");
 
-            // Function to trigger when heart is clicked
             function startEverything() {
-                // Run the original play() function from playImg.js if it exists
+                // 1. Play the video
+                if (video) {
+                    video.play().catch(e => console.log("Playback failed:", e));
+                }
+                
+                // 2. Trigger the typewriter/animation (original play function)
                 if (typeof play === "function") { 
                     play(); 
                 }
                 
-                // Start the video with sound
-                video.play();
+                // 3. Hide the "Click!" text after clicking
+                document.getElementById("clickMe").style.opacity = "0";
             }
 
-            // Logic to play exactly 3 times
             video.onended = function() {
                 playCount++;
                 if (playCount < 3) {
                     video.play();
-                } else {
-                    console.log("Video stopped after 3 plays.");
                 }
             };
         </script>
