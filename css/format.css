@@ -1,102 +1,109 @@
-/* General Setup */
+/* General Page Setup */
 body {
     background-color: #000;
     margin: 0;
     overflow: hidden;
-    font-family: "Microsoft YaHei", sans-serif;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 canvas {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -1; /* Puts stars behind content */
 }
 
-/* Side-by-Side Media */
+/* Side-by-Side Photo and Video */
 #imgTxt {
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 20%;
+    top: 22%;
     left: 0;
     right: 0;
     margin: auto;
     width: 95%;
-    height: 40%;
+    height: 38%;
     gap: 20px;
+    z-index: 10;
 }
 
 #img, #clip {
     display: block;
+    width: auto;
     max-width: 45%;
     height: 100%;
     object-fit: contain;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
+    background-color: #111; /* Dark background for video container */
 }
 
-/* Timer Section */
+/* Top Timer Section */
 #content {
     position: absolute;
-    top: 5%;
+    top: 4%;
     left: 0;
     right: 0;
     width: 100%;
     text-align: center;
     color: white;
+    z-index: 10;
 }
 
 #together {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 26px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 #timer b {
-    font-size: 24px;
+    font-size: 22px;
     color: #ff8e8e;
 }
 
-/* Typewriter Section */
+/* Typewriter Message Section */
 #typeDiv {
     position: absolute;
-    top: 62%;
+    top: 65%;
     left: 0;
     right: 0;
     text-align: center;
     color: white;
-    font-size: 20px;
+    font-size: 19px;
+    z-index: 10;
+    line-height: 1.5;
 }
 
-/* HEART BUTTON - FIXED SIZE */
+/* LARGE HEART BUTTON */
 #heartTxt {
     position: absolute;
-    top: 78%;
+    top: 80%;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px; /* Bigger container */
-    height: 120px;
+    width: 140px; /* Large clickable area */
+    height: 140px;
     text-align: center;
-    z-index: 999; /* Ensures it sits on top of everything */
+    z-index: 100; /* Ensures it is on top of everything */
 }
 
 #clickMe {
     display: block;
     font-size: 18px;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: bold;
-    transition: 0.5s;
+    transition: opacity 0.5s;
 }
 
 #heart {
     width: 100%;
-    height: 80px; /* Fixed height for the heart button area */
+    height: 80px;
 }
 
 #button {
-    background-image: url("../pic/love.png"); /* Ensure this file exists! */
+    background-image: url("../pic/love.png"); /* Change if your icon name is different */
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
@@ -109,9 +116,9 @@ canvas {
     transition: transform 0.2s ease;
 }
 
-/* Make heart pulse slightly when hovered or clicked */
+/* Pulse animation on hover */
 #button:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 #button:active {

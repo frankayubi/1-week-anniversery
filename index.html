@@ -8,7 +8,7 @@
     </head>
 
     <body style="margin:0px">
-        <canvas></canvas>
+        <canvas id="canvas"></canvas>
 
         <div id="imgTxt">
             <img id="img" src="pic/your_photo.png"> 
@@ -41,38 +41,44 @@
         </div>
 
         <script>
+            // Compatibility variables for external JS files
             var ok = 0;
             var flag = 1;
             var t = 0;
             var playCount = 0;
-
-            // Compatibility for existing scripts
             var imageArray = ["pic/your_photo.png"]; 
             var txtArray = ["You are soooo cute !!!!"];
             var imageIndex = 0;
             var len = 1;
 
-            var video = document.getElementById("clip");
-
+            // The main click function
             function startEverything() {
-                // 1. Play the video
+                var video = document.getElementById("clip");
+                var clickText = document.getElementById("clickMe");
+
+                // 1. Play Video (Sound is allowed because of the click)
                 if (video) {
-                    video.play().catch(e => console.log("Playback failed:", e));
+                    video.play().catch(function(error) {
+                        console.log("Video play failed: ", error);
+                    });
                 }
                 
-                // 2. Trigger the typewriter/animation (original play function)
-                if (typeof play === "function") { 
-                    play(); 
+                // 2. Trigger Typewriter/Stars (calls function inside playImg.js)
+                if (typeof window.play === "function") { 
+                    window.play(); 
                 }
                 
-                // 3. Hide the "Click!" text after clicking
-                document.getElementById("clickMe").style.opacity = "0";
+                // 3. Hide the hint text
+                if (clickText) {
+                    clickText.style.opacity = "0";
+                }
             }
 
-            video.onended = function() {
+            // Loop the video exactly 3 times
+            document.getElementById("clip").onended = function() {
                 playCount++;
                 if (playCount < 3) {
-                    video.play();
+                    this.play();
                 }
             };
         </script>
