@@ -4,7 +4,9 @@ dv.style.opacity = 0;
 var val = 0;
 
 function timer(){
-	var start = new Date(2018, 0, 27, 20, 53);
+	// April 19, 2026 at 3:41 PM (15:41)
+    // Date(year, monthIndex, day, hours, minutes)
+    var start = new Date(2026, 3, 19, 15, 41);
 	var t = new Date() - start;
 	var d = Math.floor(t / 1000 / 60 / 60 / 24);
 	var h = Math.floor(t / 1000 / 60 / 60 % 24);
