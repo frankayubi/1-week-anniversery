@@ -1,22 +1,21 @@
-/* General Page Setup */
 body {
     background-color: #000;
     margin: 0;
     overflow: hidden;
-    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Microsoft YaHei", sans-serif;
 }
 
 canvas {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Puts stars behind content */
+    z-index: -1;
 }
 
-/* Side-by-Side Photo and Video */
 #imgTxt {
     position: absolute;
-    display: flex;
+    display: none; /* Hidden until click */
+    opacity: 0;
     align-items: center;
     justify-content: center;
     top: 22%;
@@ -27,6 +26,7 @@ canvas {
     height: 38%;
     gap: 20px;
     z-index: 10;
+    transition: opacity 1s ease;
 }
 
 #img, #clip {
@@ -37,10 +37,9 @@ canvas {
     object-fit: contain;
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
-    background-color: #111; /* Dark background for video container */
+    background-color: #111;
 }
 
-/* Top Timer Section */
 #content {
     position: absolute;
     top: 4%;
@@ -49,21 +48,11 @@ canvas {
     width: 100%;
     text-align: center;
     color: white;
-    z-index: 10;
 }
 
-#together {
-    font-size: 26px;
-    margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
+#together { font-size: 26px; }
+#timer b { font-size: 22px; color: #ff8e8e; }
 
-#timer b {
-    font-size: 22px;
-    color: #ff8e8e;
-}
-
-/* Typewriter Message Section */
 #typeDiv {
     position: absolute;
     top: 65%;
@@ -72,20 +61,18 @@ canvas {
     text-align: center;
     color: white;
     font-size: 19px;
-    z-index: 10;
-    line-height: 1.5;
+    transition: opacity 0.5s;
 }
 
-/* LARGE HEART BUTTON */
 #heartTxt {
     position: absolute;
     top: 80%;
     left: 50%;
     transform: translateX(-50%);
-    width: 140px; /* Large clickable area */
+    width: 140px;
     height: 140px;
     text-align: center;
-    z-index: 100; /* Ensures it is on top of everything */
+    z-index: 100;
 }
 
 #clickMe {
@@ -94,33 +81,19 @@ canvas {
     color: white;
     margin-bottom: 8px;
     font-weight: bold;
-    transition: opacity 0.5s;
-}
-
-#heart {
-    width: 100%;
-    height: 80px;
 }
 
 #button {
-    background-image: url("../pic/love.png"); /* Change if your icon name is different */
+    background-image: url("../pic/love.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
     border: none;
     outline: none;
-    background-position: center;
     width: 100%;
-    height: 100%;
+    height: 80px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
-/* Pulse animation on hover */
-#button:hover {
-    transform: scale(1.15);
-}
-
-#button:active {
-    transform: scale(0.9);
-}
+#button:active { transform: scale(0.9); }

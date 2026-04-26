@@ -14,7 +14,6 @@
             <img id="img" src="pic/your_photo.png"> 
             <video id="clip" playsinline>
                 <source src="pic/your_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
             </video>
         </div>
 
@@ -41,45 +40,44 @@
         </div>
 
         <script>
-            // Compatibility variables for external JS files
             var ok = 0;
             var flag = 1;
             var t = 0;
             var playCount = 0;
+            
+            // Required for external script compatibility
             var imageArray = ["pic/your_photo.png"]; 
             var txtArray = ["You are soooo cute !!!!"];
             var imageIndex = 0;
             var len = 1;
 
-            // The main click function
             function startEverything() {
                 var video = document.getElementById("clip");
                 var clickText = document.getElementById("clickMe");
+                var imgBox = document.getElementById("imgTxt");
 
-                // 1. Play Video (Sound is allowed because of the click)
+                // Reveal the hidden container
+                if (imgBox) {
+                    imgBox.style.display = "flex";
+                    // Small timeout ensures the transition works
+                    setTimeout(function() { imgBox.style.opacity = "1"; }, 50);
+                }
+
                 if (video) {
-                    video.play().catch(function(error) {
-                        console.log("Video play failed: ", error);
-                    });
+                    video.play().catch(function(e) { console.log("Video wait: ", e); });
                 }
                 
-                // 2. Trigger Typewriter/Stars (calls function inside playImg.js)
+                // Call play() in playImg.js to hide text and show media
                 if (typeof window.play === "function") { 
                     window.play(); 
                 }
                 
-                // 3. Hide the hint text
-                if (clickText) {
-                    clickText.style.opacity = "0";
-                }
+                if (clickText) clickText.style.opacity = "0";
             }
 
-            // Loop the video exactly 3 times
             document.getElementById("clip").onended = function() {
                 playCount++;
-                if (playCount < 3) {
-                    this.play();
-                }
+                if (playCount < 3) { this.play(); }
             };
         </script>
         
